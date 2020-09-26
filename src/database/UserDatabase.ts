@@ -17,11 +17,12 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-    public async insertCPF(data: string) {
+    public async insertCPF(data: any) {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${UserDatabase.TABLE_NAME} (cpf)
-                VALUES ("${data}")
+                VALUES ("${data.cpf}") 
+                WHERE id = "${data.id}"
             `);
         } catch (error) {
             throw new Error(error.message);
@@ -30,11 +31,12 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-    public async insertName(data: string) {
+    public async insertName(data: any) {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${UserDatabase.TABLE_NAME} (name)
-                VALUES ("${data}")
+                VALUES ("${data.name}") 
+                WHERE id = "${}"
             `);
         } catch (error) {
             throw new Error(error.message);
@@ -43,11 +45,12 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-    public async insertBirthday(data: string) {
+    public async insertBirthday(data: any) {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${UserDatabase.TABLE_NAME} (birthday)
-                VALUES ("${data}")
+                VALUES ("${data.birthday}")
+                WHERE id = "${data.id}"
             `);
         } catch (error) {
             throw new Error(error.message);

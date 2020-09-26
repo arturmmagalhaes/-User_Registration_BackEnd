@@ -30,26 +30,41 @@ export class UserBusiness {
     }
 
     public async insertCPF(dataController: any) {
-        if(!dataController || !dataController.cpf){
+        if(!dataController || !dataController.cpf || !dataController.token){
             throw new Error('Invalid Entry');
         }
 
-        this.userDatabase.insertCPF(dataController.cpf);
+        const id = await this.authenticator.getData(dataController.token);
+
+        await this.userDatabase.insertCPF({
+            id,
+            cpf: dataController.cpf
+        });
     }
 
     public async insertName(dataController: any) {
-        if(!dataController || !dataController.name){
+        if(!dataController || !dataController.name || !dataController.token){
             throw new Error('Invalid Entry');
         }
 
-        this.userDatabase.insertName(dataController.name);
+        const id = await this.authenticator.getData(dataController.token);
+
+        await this.userDatabase.insertName({
+            id,
+            name: dataController.name
+        });
     }
 
     public async insertBirthday(dataController: any) {
-        if(!dataController || !dataController.birthday){
+        if(!dataController || !dataController.birthday || !dataController.token){
             throw new Error('Invalid Entry');
         }
 
-        this.userDatabase.insertBirthday(dataController.birthday);
+        const id = await this.authenticator.getData(dataController.token);
+        
+        await this.userDatabase.insertBirthday({
+            id,
+            birthday: dataController.birthday
+        });
     }
 }
