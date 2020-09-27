@@ -7,7 +7,7 @@ import { IdGenerate } from "../services/IdGenerate";
 
 export class UserController {
     
-    private static userBusiness = new UserBusiness(
+    private static USERBUSINESS = new UserBusiness(
         new UserDatabase() as any,
         new IdGenerate() as any,
         new HashManager(),
@@ -17,7 +17,7 @@ export class UserController {
     public async createUser(req: Request, res: Response){
         try {
 
-            const token = await UserController.userBusiness.createUser({
+            const token = await UserController.USERBUSINESS.createUser({
                 email: req.body.email,
                 password: req.body.password
             });
@@ -34,7 +34,7 @@ export class UserController {
 
     public async insertCPF(req: Request, res: Response){
         try {
-            await UserController.userBusiness.insertCPF({
+            await UserController.USERBUSINESS.insertCPF({
                 token: req.headers.authorization as string,
                 cpf: req.body.cpf
             });
@@ -51,7 +51,7 @@ export class UserController {
 
     public async insertName(req: Request, res: Response){
         try {
-            await UserController.userBusiness.insertName({
+            await UserController.USERBUSINESS.insertName({
                 token: req.headers.authorization as string,
                 name: req.body.name
             });
@@ -68,7 +68,7 @@ export class UserController {
 
     public async insertBirthday(req: Request, res: Response){
         try {
-            await UserController.userBusiness.insertBirthday({
+            await UserController.USERBUSINESS.insertBirthday({
                 token: req.headers.authorization as string,
                 birthday: req.body.birthday
             });
