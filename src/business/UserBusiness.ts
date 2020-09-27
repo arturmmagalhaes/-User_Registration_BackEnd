@@ -26,7 +26,7 @@ export class UserBusiness {
             password
         });
 
-        return this.authenticator.generateToken(id);
+        return this.authenticator.generateToken({id});
     }
 
     public async insertCPF(dataController: any) {
@@ -64,7 +64,12 @@ export class UserBusiness {
         
         await this.userDatabase.insertBirthday({
             id,
-            birthday: dataController.birthday
+            birthday: this.transformDate(dataController.birthday)
         });
+    }
+
+    public transformDate(date: string) {
+        const isDate = date.split('-')
+        return `${isDate[2]}-${isDate[1]}-${isDate[0]}`
     }
 }

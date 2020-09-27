@@ -7,7 +7,7 @@ export class UserDatabase extends BaseDatabase {
     public async createUser(data: any) {
         try {
             await super.getConnection().raw(`
-                INSERT INTO ${UserDatabase.TABLE_NAME} 
+                INSERT INTO ${UserDatabase.TABLE_NAME} (id, email, password)
                 VALUES ("${data.id}","${data.email}","${data.password}")
             `);
         } catch (error) {
@@ -20,8 +20,8 @@ export class UserDatabase extends BaseDatabase {
     public async insertCPF(data: any) {
         try {
             await super.getConnection().raw(`
-                INSERT INTO ${UserDatabase.TABLE_NAME} (cpf)
-                VALUES ("${data.cpf}") 
+                UPDATE ${UserDatabase.TABLE_NAME} 
+                SET cpf = "${data.cpf}" 
                 WHERE id = "${data.id}"
             `);
         } catch (error) {
@@ -34,9 +34,9 @@ export class UserDatabase extends BaseDatabase {
     public async insertName(data: any) {
         try {
             await super.getConnection().raw(`
-                INSERT INTO ${UserDatabase.TABLE_NAME} (name)
-                VALUES ("${data.name}") 
-                WHERE id = "${}"
+                UPDATE ${UserDatabase.TABLE_NAME} 
+                SET name = "${data.name}" 
+                WHERE id = "${data.id}"
             `);
         } catch (error) {
             throw new Error(error.message);
@@ -48,8 +48,8 @@ export class UserDatabase extends BaseDatabase {
     public async insertBirthday(data: any) {
         try {
             await super.getConnection().raw(`
-                INSERT INTO ${UserDatabase.TABLE_NAME} (birthday)
-                VALUES ("${data.birthday}")
+                UPDATE ${UserDatabase.TABLE_NAME} 
+                SET birthday = "${data.birthday}"
                 WHERE id = "${data.id}"
             `);
         } catch (error) {

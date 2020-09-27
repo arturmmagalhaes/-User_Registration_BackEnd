@@ -1,15 +1,19 @@
 import jwt from 'jsonwebtoken';
 
 export class Authenticator {
-    public generateToken(data: any): string{
-        return jwt.sign(
-            data.id,
+    public async generateToken(data: any): Promise<any>{
+        const token = await jwt.sign(
+            {id: data.id},
             process.env.JWT_KEY as string,
-            {expiresIn: '2d'}
-            )
+            {expiresIn: '1d'}
+        );
+
+        return token
     }
 
-    public getData(token: string) {
-        return jwt.verify(token, process.env.JWT_KEY as string) as any;
+    public async getData(token: string) {
+        const payload = await jwt.verify(token, process.env.JWT_KEY as string) as any;
+        
+        return payload.id;
     }
 }
