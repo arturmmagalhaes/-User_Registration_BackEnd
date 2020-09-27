@@ -10,7 +10,7 @@ export class AddressBusiness {
         private authenticator: Authenticator
     ){}
 
-    public async insertAddres(dataController: any) {
+    public async insertAddress(dataController: any) {
         if(!dataController || !dataController.cep || !dataController.street || !dataController.number || !dataController.complement || !dataController.city || !dataController.state || !dataController.token){
             throw new Error("Invalid Entry");
         }
@@ -18,7 +18,7 @@ export class AddressBusiness {
         const id = this.idGenerate.generate();
         const id_user = this.authenticator.getData(dataController.token)
 
-        await this.addressDatabase.insertAddres({
+        await this.addressDatabase.insertAddress({
             id,
             cep: dataController.cep,
             street: dataController.street,

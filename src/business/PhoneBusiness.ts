@@ -11,7 +11,7 @@ export class PhotoBusiness {
     ){}
 
     public async insertPhone(dataController: any) {
-        if(!dataController || !dataController.number || !dataController.id_user || !dataController.token){
+        if(!dataController || !dataController.number || !dataController.token){
             throw new Error("Invalid Entry");
         }
 

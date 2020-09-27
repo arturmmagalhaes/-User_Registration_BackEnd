@@ -4,7 +4,7 @@ export class AddressDatabase extends BaseDatabase {
 
     private static TABLE_NAME = 'Address';
 
-    public async insertAddres(data: any) {
+    public async insertAddress(data: any) {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${AddressDatabase.TABLE_NAME}
