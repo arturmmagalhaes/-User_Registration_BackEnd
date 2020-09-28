@@ -21,6 +21,10 @@ export class AddressBusiness {
             throw new Error("Invalid Entry");
         }
 
+        if(dataController.nextendpoint !== "Address"){
+            throw new Error("Invalid Path");
+          }
+
         const id = this.idGenerate.generate();
         const id_user = await this.authenticator.getData(dataController.token)
 

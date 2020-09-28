@@ -35,6 +35,10 @@ export class UserBusiness {
             throw new Error('Invalid Entry');
         }
 
+        if(dataController.nextendpoint !== "CPF"){
+          throw new Error("Invalid Path");
+        }
+
         //FORMAT CPF: 00000000000
         if(!this.validateCPF(dataController.cpf)){
             throw new Error('Invalid CPF');
@@ -54,6 +58,9 @@ export class UserBusiness {
             throw new Error('Invalid Entry');
         }
 
+        if(dataController.nextendpoint !== "Fullname"){
+          throw new Error("Invalid Path");
+        }
         const id = await this.authenticator.getData(dataController.token);
 
         const fullname = this.fullName(dataController.name);
@@ -69,6 +76,10 @@ export class UserBusiness {
     public async insertBirthday(dataController: any) {
         if(!dataController || !dataController.birthday || !dataController.token){
             throw new Error('Invalid Entry');
+        }
+
+        if(dataController.nextendpoint !== "Birthday"){
+          throw new Error("Invalid Path");
         }
 
         const id = await this.authenticator.getData(dataController.token); 

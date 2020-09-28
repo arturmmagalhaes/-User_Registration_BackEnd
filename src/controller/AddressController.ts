@@ -22,11 +22,13 @@ export class AddressController {
                 number: req.body.number,
                 complement: req.body.complement,
                 city: req.body.city,
-                state: req.body.state
+                state: req.body.state,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
-                message: "Insert Address"
+                message: "Insert Address",
+                nextendpoint: "Amount"
             });
         } catch (error) {
             res.status(400).send({

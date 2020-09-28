@@ -5,6 +5,7 @@ import { AddressInfo } from 'net';
 import { userRouter } from './router/UserRouter';
 import { phoneRouter } from './router/PhoneRouter';
 import { addressRouter } from './router/AddressRouter';
+import { amountRouter } from './router/AmountRouter';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use('/user', userRouter);
 app.use('/phone', phoneRouter);
 app.use('/address', addressRouter);
+app.use('/amount', amountRouter);
 
 const server = app.listen(3003, () => {
     if(server){
