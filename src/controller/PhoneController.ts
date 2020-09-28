@@ -20,7 +20,25 @@ export class PhoneController {
             });
 
             res.status(200).send({
-                message: "Insert phone"
+                message: "Insert Phone"
+            })
+        } catch (error) {
+            res.status(400).send({
+                message: error.message
+            });
+        }
+    }
+
+    public async updatePhone(req: Request, res: Response){
+        try {
+            await PhoneController.PHONEBUSINESS.updatePhone({
+                id: req.params.id,
+                token: req.headers.authorization as string,
+                number: req.body.number as string,
+            });
+
+            res.status(200).send({
+                message: "Update Phone"
             })
         } catch (error) {
             res.status(400).send({

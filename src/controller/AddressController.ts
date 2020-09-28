@@ -16,7 +16,7 @@ export class AddressController {
         try {
 
             await AddressController.ADDRESSBUSINESS.insertAddress({
-                token: req.headers.authorization,
+                token: req.headers.authorization as string,
                 cep: req.body.cep,
                 street: req.body.street,
                 number: req.body.number,
@@ -27,6 +27,30 @@ export class AddressController {
 
             res.status(200).send({
                 message: "Insert Address"
+            });
+        } catch (error) {
+            res.status(400).send({
+                message: error.message
+            });
+        }
+    }
+
+    public async updateAddress(req: Request, res: Response) {
+        try {
+
+            await AddressController.ADDRESSBUSINESS.updateAddress({
+                id: req.params.id,
+                token: req.headers.authorization as string,
+                cep: req.body.cep,
+                street: req.body.street,
+                number: req.body.number,
+                complement: req.body.complement,
+                city: req.body.city,
+                state: req.body.state
+            });
+
+            res.status(200).send({
+                message: "Update Address"
             });
         } catch (error) {
             res.status(400).send({

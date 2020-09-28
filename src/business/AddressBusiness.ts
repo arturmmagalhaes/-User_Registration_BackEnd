@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { AddressDatabase } from "../database/AddressDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerate } from "../services/IdGenerate";
@@ -16,7 +17,7 @@ export class AddressBusiness {
         }
 
         const id = this.idGenerate.generate();
-        const id_user = this.authenticator.getData(dataController.token)
+        const id_user = await this.authenticator.getData(dataController.token)
 
         await this.addressDatabase.insertAddress({
             id,
@@ -26,7 +27,28 @@ export class AddressBusiness {
             complement: dataController.complement,
             city: dataController.city,
             state: dataController.state,
-            id_user
+            id_user,
+            dateNow: dayjs().format("YYYY-MM-DD HH:mm:ss")
+        });
+    }
+
+    public async updateAddress(dataController: any) {
+        if(!dataController || !dataController.id || !dataController.cep || !dataController.street || !dataController.number || !dataController.complement || !dataController.city || !dataController.state || !dataController.token){
+            throw new Error("Invalid Entry");
+        }
+
+        const id_user = await this.authenticator.getData(dataController.token)
+
+        await this.addressDatabase.updateAddress({
+            id: dataController.id,
+            cep: dataController.cep,
+            street: dataController.street,
+            number: dataController.number,
+            complement: dataController.complement,
+            city: dataController.city,
+            state: dataController.state,
+            id_user,
+            dateNow: dayjs().format("YYYY-MM-DD HH:mm:ss")
         });
     }
 }

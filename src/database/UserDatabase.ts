@@ -21,7 +21,7 @@ export class UserDatabase extends BaseDatabase {
         try {
             await super.getConnection().raw(`
                 UPDATE ${UserDatabase.TABLE_NAME} 
-                SET cpf = "${data.cpf}" 
+                SET cpf = "${data.cpf}", updateAt = "${data.dateNow}"
                 WHERE id = "${data.id}"
             `);
         } catch (error) {
@@ -35,7 +35,7 @@ export class UserDatabase extends BaseDatabase {
         try {
             await super.getConnection().raw(`
                 UPDATE ${UserDatabase.TABLE_NAME} 
-                SET name = "${data.name}" 
+                SET name = "${data.name}", lastname = "${data.lastname}", updateAt = "${data.dateNow}"
                 WHERE id = "${data.id}"
             `);
         } catch (error) {
@@ -49,7 +49,7 @@ export class UserDatabase extends BaseDatabase {
         try {
             await super.getConnection().raw(`
                 UPDATE ${UserDatabase.TABLE_NAME} 
-                SET birthday = "${data.birthday}"
+                SET birthday = "${data.birthday}", updateAt = "${data.dateNow}"
                 WHERE id = "${data.id}"
             `);
         } catch (error) {

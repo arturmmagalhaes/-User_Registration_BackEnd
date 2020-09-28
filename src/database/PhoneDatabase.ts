@@ -16,4 +16,18 @@ export class PhoneDatabase extends BaseDatabase {
             await super.destroyConnection();
         }
     }
+
+    public async updatePhone(data: any) {
+        try {
+            await super.getConnection().raw(`
+                UPDATE ${PhoneDatabase.TABLE_NAME} 
+                SET number = "${data.number}", updateAt = "${data.dateNow}"
+                WHERE id = "${data.id}"
+            `);
+        } catch (error) {
+            throw new Error(error.message);
+        } finally {
+            await super.destroyConnection();
+        }
+    }
 }

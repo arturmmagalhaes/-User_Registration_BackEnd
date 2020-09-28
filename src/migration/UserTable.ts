@@ -13,6 +13,7 @@ export class UserTable extends BaseDatabase {
                 password VARCHAR(255) NOT NULL,
                 cpf VARCHAR(11) UNIQUE,
                 name VARCHAR(255) UNIQUE,
+                lastname VARCHAR(255) UNIQUE,
                 birthday VARCHAR(10) UNIQUE
             )`);
         } catch(error) {
