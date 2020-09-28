@@ -23,7 +23,8 @@ export class UserController {
             });
             
             res.status(200).send({
-                token
+                token,
+                "next-end-point": "CPF" 
             })
         } catch (error) {
             res.status(400).send({
@@ -40,7 +41,8 @@ export class UserController {
             });
 
             res.status(200).send({
-                message: "Insert CPF!"
+                message: "Insert CPF!",
+                "next-end-point": "Fullname" 
             })
         } catch (error) {
             res.status(400).send({
@@ -57,7 +59,8 @@ export class UserController {
             });
 
             res.status(200).send({
-                message: "Insert Name!"
+                message: "Insert Name!",
+                "next-end-point": "Birthday" 
             })
         } catch (error) {
             res.status(400).send({
@@ -74,7 +77,8 @@ export class UserController {
             });
 
             res.status(200).send({
-                message: "Insert Birthday!"
+                message: "Insert Birthday!",
+                "next-end-point": "Phone" 
             })
         } catch (error) {
             res.status(400).send({
