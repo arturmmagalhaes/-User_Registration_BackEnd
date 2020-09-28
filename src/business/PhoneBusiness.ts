@@ -16,6 +16,10 @@ export class PhotoBusiness {
             throw new Error("Invalid Entry");
         }
 
+        if(dataController.nextendpoint !== "Phone"){
+            throw new Error("Invalid Path");
+        }
+
         const id = this.idGenerate.generate();
         const id_user = await this.authenticator.getData(dataController.token);
 

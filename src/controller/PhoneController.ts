@@ -17,11 +17,12 @@ export class PhoneController {
             await PhoneController.PHONEBUSINESS.insertPhone({
                 token: req.headers.authorization as string,
                 number: req.body.number as string,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
                 message: "Insert Phone",
-                "next-end-point": "Address"
+                nextendpoint: "Address"
             })
         } catch (error) {
             res.status(400).send({

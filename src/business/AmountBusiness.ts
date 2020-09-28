@@ -16,6 +16,10 @@ export class AmountBusiness {
             throw new Error("Invalid Entry");
         }
 
+        if(dataController.nextendpoint !== "Amount"){
+            throw new Error("Invalid Path");
+          }
+
         const id = await this.idGenerate.generate();
         
         const id_user = await this.authenticator.getData(dataController.token);

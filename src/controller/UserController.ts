@@ -24,7 +24,7 @@ export class UserController {
             
             res.status(200).send({
                 token,
-                "next-end-point": "CPF" 
+                nextendpoint: "CPF" 
             })
         } catch (error) {
             res.status(400).send({
@@ -37,12 +37,13 @@ export class UserController {
         try {
             await UserController.USERBUSINESS.insertCPF({
                 token: req.headers.authorization as string,
-                cpf: req.body.cpf
+                cpf: req.body.cpf,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
                 message: "Insert CPF!",
-                "next-end-point": "Fullname" 
+                nextendpoint: "Fullname" 
             })
         } catch (error) {
             res.status(400).send({
@@ -55,12 +56,13 @@ export class UserController {
         try {
             await UserController.USERBUSINESS.insertName({
                 token: req.headers.authorization as string,
-                name: req.body.name
+                name: req.body.name,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
                 message: "Insert Name!",
-                "next-end-point": "Birthday" 
+                nextendpoint: "Birthday" 
             })
         } catch (error) {
             res.status(400).send({
@@ -73,12 +75,13 @@ export class UserController {
         try {
             await UserController.USERBUSINESS.insertBirthday({
                 token: req.headers.authorization as string,
-                birthday: req.body.birthday
+                birthday: req.body.birthday,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
                 message: "Insert Birthday!",
-                "next-end-point": "Phone" 
+                nextendpoint: "Phone" 
             })
         } catch (error) {
             res.status(400).send({

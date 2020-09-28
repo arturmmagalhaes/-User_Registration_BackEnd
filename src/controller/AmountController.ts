@@ -17,7 +17,8 @@ export class AmountController {
 
             await AmountController.AMOUNTBUSINESS.insertAmount({
                 token: req.headers.authorization as string,
-                value: req.body.value as number
+                value: req.body.value as number,
+                nextendpoint: req.body.nextendpoint
             });
 
             res.status(200).send({
