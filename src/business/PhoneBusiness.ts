@@ -26,7 +26,8 @@ export class PhotoBusiness {
         await this.phoneDatabase.insertPhone({
             id,
             number: dataController.number,
-            id_user
+            id_user,
+            dateNow: dayjs().format("YYYY-MM-DD HH:mm:ss")
         });
     }
 

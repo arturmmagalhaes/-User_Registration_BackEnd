@@ -8,7 +8,7 @@ export class PhoneDatabase extends BaseDatabase {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${PhoneDatabase.TABLE_NAME} 
-                VALUES ("${data.id}","${data.number}","${data.id_user}")
+                VALUES ("${data.id}","${data.number}","${data.id_user}", "${data.dateNow}")
             `);
         } catch (error) {
             throw new Error(error.message);
