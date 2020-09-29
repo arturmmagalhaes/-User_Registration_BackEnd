@@ -33,6 +33,25 @@ export class UserController {
         }
     }
 
+    public async login(req: Request, res: Response){
+        try {
+
+            const token = await UserController.USERBUSINESS.login({
+                email: req.body.email,
+                password: req.body.password
+            });
+
+            res.status(200).send({
+                token,
+                nextendpoint: "CPF" 
+            });
+        } catch (error) {
+            res.status(400).send({
+                message: error.message
+            });
+        }
+    }
+
     public async insertCPF(req: Request, res: Response){
         try {
             await UserController.USERBUSINESS.insertCPF({
