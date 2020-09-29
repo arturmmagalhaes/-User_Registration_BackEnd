@@ -30,6 +30,17 @@ export class UserBusiness {
         return this.authenticator.generateToken({id});
     }
 
+    public async login(dataController: any) {
+      
+      const result = await this.userDatabase.login(dataController.email);
+
+      if(!(await this.hashManager.compare(dataController.password, result.password))) {
+        throw new Error("Invalid Email or Password");
+      }
+
+      return await this.authenticator.generateToken({id: result.id});
+    }
+
     public async insertCPF(dataController: any) {
         if(!dataController || !dataController.cpf || !dataController.token){
             throw new Error('Invalid Entry');
@@ -91,7 +102,7 @@ export class UserBusiness {
         });
     }
 
-    public transformDate(date: string) {
+    public transformDate(date: string): string {
         const isDate = date.split('-')
         return `${isDate[2]}-${isDate[1]}-${isDate[0]}`
     }
@@ -112,7 +123,7 @@ export class UserBusiness {
         }
     }
 
-    public validateCPF(cpf: string) {
+    public validateCPF(cpf: string): boolean {
         let sum = 0
         let validate = 10
         let isValid = false

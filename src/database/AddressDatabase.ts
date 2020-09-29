@@ -1,10 +1,11 @@
+import { AddressModel } from "../model/AddressModel";
 import { BaseDatabase } from "./base/BaseDatabase";
 
 export class AddressDatabase extends BaseDatabase {
 
     private static TABLE_NAME = 'Address';
 
-    public async insertAddress(data: any) {
+    public async insertAddress(data: AddressModel): Promise<void> {
         try {
             await super.getConnection().raw(`
                 INSERT INTO ${AddressDatabase.TABLE_NAME}
@@ -15,12 +16,12 @@ export class AddressDatabase extends BaseDatabase {
         }
     }
 
-    public async updateAddress(data: any){
+    public async updateAddress(data: AddressModel): Promise<void> {
         try {
             await super.getConnection().raw(`
                 UPDATE ${AddressDatabase.TABLE_NAME} 
                 SET cep = "${data.cep}", street = "${data.street}", number = "${data.number}", complement = "${data.complement}", city = "${data.city}", state = "${data.state}", updateAt = "${data.dateNow}"
-                WHERE id = "${data.id}"
+                WHERE id = "${data.id}" and id_user = "${data.id_user}"
             `);
         } catch (error) {
             throw new Error(error.message);
