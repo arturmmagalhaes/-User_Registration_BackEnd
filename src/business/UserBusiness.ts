@@ -31,6 +31,9 @@ export class UserBusiness {
     }
 
     public async login(dataController: any) {
+      if(!dataController || !dataController.email || !dataController.password){
+        throw new Error('Invalid Entry');
+      }
       
       const result = await this.userDatabase.login(dataController.email);
 
