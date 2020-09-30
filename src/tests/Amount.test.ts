@@ -66,7 +66,7 @@ describe("Amount tests", () => {
             await amount.insertAmount({
                 token: 'token',
                 value: 300000,
-                nextendpoint: "Amount"
+                nextendpoint: "AMOUNT"
             });
 
             expect(amountDatabase.insertAmount).toBeCalled();
