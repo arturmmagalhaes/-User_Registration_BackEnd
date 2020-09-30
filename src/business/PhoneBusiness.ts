@@ -3,7 +3,7 @@ import { PhoneDatabase } from "../database/PhoneDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerate } from "../services/IdGenerate";
 
-export class PhotoBusiness {
+export class PhoneBusiness {
     
     constructor(
         private phoneDatabase: PhoneDatabase,
