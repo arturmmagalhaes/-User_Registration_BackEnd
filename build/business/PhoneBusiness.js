@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PhotoBusiness = void 0;
+exports.PhoneBusiness = void 0;
 const dayjs_1 = __importDefault(require("dayjs"));
-class PhotoBusiness {
+class PhoneBusiness {
     constructor(phoneDatabase, idGenerate, authenticator) {
         this.phoneDatabase = phoneDatabase;
         this.idGenerate = idGenerate;
@@ -25,7 +25,7 @@ class PhotoBusiness {
             if (!dataController || !dataController.number || !dataController.token) {
                 throw new Error("Invalid Entry");
             }
-            if (dataController.nextendpoint !== "Phone") {
+            if (dataController.nextendpoint !== "PHONE") {
                 throw new Error("Invalid Path");
             }
             const id = this.idGenerate.generate();
@@ -53,4 +53,4 @@ class PhotoBusiness {
         });
     }
 }
-exports.PhotoBusiness = PhotoBusiness;
+exports.PhoneBusiness = PhoneBusiness;

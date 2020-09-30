@@ -21,7 +21,7 @@ export class UserDatabase extends BaseDatabase {
     public async login(email: string) {
         try {
             const result = await super.getConnection().raw(`
-                SELECT id, password FROM ${UserDatabase.TABLE_NAME}
+                SELECT * FROM ${UserDatabase.TABLE_NAME}
                 WHERE email = "${email}"
             `);
 

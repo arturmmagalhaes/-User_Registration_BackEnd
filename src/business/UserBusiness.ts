@@ -1,3 +1,4 @@
+import { KeyObject } from 'crypto';
 import dayjs from 'dayjs';
 import { UserDatabase } from "../database/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
@@ -41,7 +42,24 @@ export class UserBusiness {
         throw new Error("Invalid Email or Password");
       }
 
-      return await this.authenticator.generateToken({id: result.id});
+      let missingEndpoints: string[] = []
+
+      for(let i in result) {
+        if(!result[i]){
+          missingEndpoints.push(i)
+        }
+      };
+
+      if(missingEndpoints.length > 0){
+        return {
+          missingEndpoints: missingEndpoints[0].toUpperCase(),
+          token: await this.authenticator.generateToken({id: result.id})
+        };
+      }
+
+      return {
+        token: await this.authenticator.generateToken({id: result.id})
+      };
     }
 
     public async insertCPF(dataController: any) {
@@ -72,7 +90,7 @@ export class UserBusiness {
             throw new Error('Invalid Entry');
         }
 
-        if(dataController.nextendpoint !== "Fullname"){
+        if(dataController.nextendpoint !== "FULLNAME"){
           throw new Error("Invalid Path");
         }
         const id = await this.authenticator.getData(dataController.token);
@@ -92,7 +110,7 @@ export class UserBusiness {
             throw new Error('Invalid Entry');
         }
 
-        if(dataController.nextendpoint !== "Birthday"){
+        if(dataController.nextendpoint !== "BIRTHDAY"){
           throw new Error("Invalid Path");
         }
 

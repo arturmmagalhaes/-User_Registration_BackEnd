@@ -22,7 +22,7 @@ export class PhoneController {
 
             res.status(200).send({
                 message: "Insert Phone",
-                nextendpoint: "Address"
+                nextendpoint: "ADDRESS"
             })
         } catch (error) {
             res.status(400).send({

@@ -21,7 +21,7 @@ class AmountBusiness {
             if (!dataController || !dataController.token || !dataController.value) {
                 throw new Error("Invalid Entry");
             }
-            if (dataController.nextendpoint !== "Amount") {
+            if (dataController.nextendpoint !== "AMOUNT") {
                 throw new Error("Invalid Path");
             }
             const id = yield this.idGenerate.generate();

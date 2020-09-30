@@ -15,7 +15,7 @@ export class AmountBusiness {
             throw new Error("Invalid Entry");
         }
 
-        if(dataController.nextendpoint !== "Amount"){
+        if(dataController.nextendpoint !== "AMOUNT"){
             throw new Error("Invalid Path");
           }
 

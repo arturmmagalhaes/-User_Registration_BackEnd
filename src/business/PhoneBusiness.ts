@@ -16,7 +16,7 @@ export class PhoneBusiness {
             throw new Error("Invalid Entry");
         }
 
-        if(dataController.nextendpoint !== "Phone"){
+        if(dataController.nextendpoint !== "PHONE"){
             throw new Error("Invalid Path");
         }
 
