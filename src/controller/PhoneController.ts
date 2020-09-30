@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { PhotoBusiness } from "../business/PhoneBusiness";
+import { PhoneBusiness } from "../business/PhoneBusiness";
 import { PhoneDatabase } from "../database/PhoneDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerate } from "../services/IdGenerate";
 
 export class PhoneController {
 
-    private static PHONEBUSINESS = new PhotoBusiness(
+    private static PHONEBUSINESS = new PhoneBusiness(
         new PhoneDatabase() as any,
         new IdGenerate() as any,
         new Authenticator() as any

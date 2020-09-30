@@ -1,4 +1,3 @@
-import { Console } from "console";
 import { AmountDatabase } from "../database/AmountDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerate } from "../services/IdGenerate";

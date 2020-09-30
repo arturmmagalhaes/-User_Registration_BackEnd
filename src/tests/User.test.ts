@@ -92,6 +92,69 @@ describe("Errors - User Tests", () => {
         }
     });
 
+    test("Error - Path CPF", async() => {
+        expect.assertions(1);
+
+        const user = new UserBusiness(
+            userDatabase as any, 
+            idGenerate as any, 
+            hashManager as any, 
+            authenticator as any
+        );
+
+        try { 
+            await user.insertCPF({
+                cpf: '55733243732',
+                nextendpoint: '',
+                token: 'token'
+            });
+        } catch (error) {
+            expect(error.message).toBe('Invalid Path');
+        }
+    });
+
+    test("Error - Path Name", async() => {
+        expect.assertions(1);
+
+        const user = new UserBusiness(
+            userDatabase as any, 
+            idGenerate as any, 
+            hashManager as any, 
+            authenticator as any
+        );
+
+        try { 
+            await user.insertName({
+                name: 'Artur Magalhães',
+                nextendpoint: '',
+                token: 'token'
+            });
+        } catch (error) {
+            expect(error.message).toBe('Invalid Path');
+        }
+    });
+    
+    test("Error - Path Birthday", async() => {
+        expect.assertions(1);
+
+        const user = new UserBusiness(
+            userDatabase as any, 
+            idGenerate as any, 
+            hashManager as any, 
+            authenticator as any
+        );
+
+        try { 
+            await user.insertBirthday({
+                birthday: '22-10-1995',
+                nextendpoint: '',
+                token: 'token'
+            });
+        } catch (error) {
+            expect(error.message).toBe('Invalid Path');
+        }
+    });
+    
 });
 
 describe("User Tests", () => {
