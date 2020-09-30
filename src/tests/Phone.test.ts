@@ -87,7 +87,7 @@ describe("Phone Tests", () => {
             await phone.insertPhone({
                 number: 30000,
                 token: '123456',
-                nextendpoint: 'Phone'
+                nextendpoint: 'PHONE'
             });
     
             expect(idGenerate.generate).toBeCalled();

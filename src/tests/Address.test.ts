@@ -99,7 +99,7 @@ describe("Address Tests", () => {
                 city: "Fortaleza",
                 state: "Ceará",
                 token: "token",
-                nextendpoint: "Address"
+                nextendpoint: "ADDRESS"
             });
 
             axios.get

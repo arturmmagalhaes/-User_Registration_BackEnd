@@ -21,7 +21,7 @@ export class AddressBusiness {
             throw new Error("Invalid Entry");
         }
 
-        if(dataController.nextendpoint !== "Address"){
+        if(dataController.nextendpoint !== "ADDRESS"){
             throw new Error("Invalid Path");
           }
 

@@ -38,13 +38,13 @@ class UserController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const token = yield UserController.USERBUSINESS.login({
+                const result = yield UserController.USERBUSINESS.login({
                     email: req.body.email,
                     password: req.body.password
                 });
                 res.status(200).send({
-                    token,
-                    nextendpoint: "CPF"
+                    token: result.token,
+                    nextendpoint: result.missingEndpoints
                 });
             }
             catch (error) {
@@ -64,7 +64,7 @@ class UserController {
                 });
                 res.status(200).send({
                     message: "Insert CPF!",
-                    nextendpoint: "Fullname"
+                    nextendpoint: "FULLNAME"
                 });
             }
             catch (error) {
@@ -84,7 +84,7 @@ class UserController {
                 });
                 res.status(200).send({
                     message: "Insert Name!",
-                    nextendpoint: "Birthday"
+                    nextendpoint: "BIRTHDAY"
                 });
             }
             catch (error) {
@@ -104,7 +104,7 @@ class UserController {
                 });
                 res.status(200).send({
                     message: "Insert Birthday!",
-                    nextendpoint: "Phone"
+                    nextendpoint: "PHONE"
                 });
             }
             catch (error) {

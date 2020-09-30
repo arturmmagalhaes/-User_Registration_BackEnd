@@ -28,7 +28,7 @@ export class AddressController {
 
             res.status(200).send({
                 message: "Insert Address",
-                nextendpoint: "Amount"
+                nextendpoint: "AMOUNT"
             });
         } catch (error) {
             res.status(400).send({

@@ -38,11 +38,29 @@ class UserBusiness {
     }
     login(dataController) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!dataController || !dataController.email || !dataController.password) {
+                throw new Error('Invalid Entry');
+            }
             const result = yield this.userDatabase.login(dataController.email);
             if (!(yield this.hashManager.compare(dataController.password, result.password))) {
                 throw new Error("Invalid Email or Password");
             }
-            return yield this.authenticator.generateToken({ id: result.id });
+            let missingEndpoints = [];
+            for (let i in result) {
+                if (!result[i]) {
+                    missingEndpoints.push(i);
+                }
+            }
+            ;
+            if (missingEndpoints.length > 0) {
+                return {
+                    missingEndpoints: missingEndpoints[0].toUpperCase(),
+                    token: yield this.authenticator.generateToken({ id: result.id })
+                };
+            }
+            return {
+                token: yield this.authenticator.generateToken({ id: result.id })
+            };
         });
     }
     insertCPF(dataController) {
@@ -70,7 +88,7 @@ class UserBusiness {
             if (!dataController || !dataController.name || !dataController.token) {
                 throw new Error('Invalid Entry');
             }
-            if (dataController.nextendpoint !== "Fullname") {
+            if (dataController.nextendpoint !== "FULLNAME") {
                 throw new Error("Invalid Path");
             }
             const id = yield this.authenticator.getData(dataController.token);
@@ -88,7 +106,7 @@ class UserBusiness {
             if (!dataController || !dataController.birthday || !dataController.token) {
                 throw new Error('Invalid Entry');
             }
-            if (dataController.nextendpoint !== "Birthday") {
+            if (dataController.nextendpoint !== "BIRTHDAY") {
                 throw new Error("Invalid Path");
             }
             const id = yield this.authenticator.getData(dataController.token);

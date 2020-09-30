@@ -36,14 +36,14 @@ export class UserController {
     public async login(req: Request, res: Response){
         try {
 
-            const token = await UserController.USERBUSINESS.login({
+            const result = await UserController.USERBUSINESS.login({
                 email: req.body.email,
                 password: req.body.password
             });
 
             res.status(200).send({
-                token,
-                nextendpoint: "CPF" 
+                token: result.token,
+                nextendpoint: result.missingEndpoints 
             });
         } catch (error) {
             res.status(400).send({
@@ -62,7 +62,7 @@ export class UserController {
 
             res.status(200).send({
                 message: "Insert CPF!",
-                nextendpoint: "Fullname" 
+                nextendpoint: "FULLNAME" 
             })
         } catch (error) {
             res.status(400).send({
@@ -81,7 +81,7 @@ export class UserController {
 
             res.status(200).send({
                 message: "Insert Name!",
-                nextendpoint: "Birthday" 
+                nextendpoint: "BIRTHDAY" 
             })
         } catch (error) {
             res.status(400).send({
@@ -100,8 +100,8 @@ export class UserController {
 
             res.status(200).send({
                 message: "Insert Birthday!",
-                nextendpoint: "Phone" 
-            })
+                nextendpoint: "PHONE" 
+            });
         } catch (error) {
             res.status(400).send({
                 message: error.message

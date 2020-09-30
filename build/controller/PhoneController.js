@@ -25,7 +25,7 @@ class PhoneController {
                 });
                 res.status(200).send({
                     message: "Insert Phone",
-                    nextendpoint: "Address"
+                    nextendpoint: "ADDRESS"
                 });
             }
             catch (error) {
@@ -56,4 +56,4 @@ class PhoneController {
     }
 }
 exports.PhoneController = PhoneController;
-PhoneController.PHONEBUSINESS = new PhoneBusiness_1.PhotoBusiness(new PhoneDatabase_1.PhoneDatabase(), new IdGenerate_1.IdGenerate(), new Authenticator_1.Authenticator());
+PhoneController.PHONEBUSINESS = new PhoneBusiness_1.PhoneBusiness(new PhoneDatabase_1.PhoneDatabase(), new IdGenerate_1.IdGenerate(), new Authenticator_1.Authenticator());

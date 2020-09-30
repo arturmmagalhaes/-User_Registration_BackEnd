@@ -40,7 +40,7 @@ class UserDatabase extends BaseDatabase_1.BaseDatabase {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield _super.getConnection.call(this).raw(`
-                SELECT id, password FROM ${UserDatabase.TABLE_NAME}
+                SELECT * FROM ${UserDatabase.TABLE_NAME}
                 WHERE email = "${email}"
             `);
                 return result[0][0];

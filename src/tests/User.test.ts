@@ -223,7 +223,7 @@ describe("User Tests", () => {
                 password: '123456'
             });
             
-            expect(result).toBe('token');
+            expect(result.token).toBe('token');
             expect(userDatabase.login).toBeCalled();
             expect(hashManager.compare).toBeCalled();
             expect(authenticator.generateToken).toBeCalled();
@@ -252,7 +252,7 @@ describe("User Tests", () => {
         } catch(error) {}
     });
 
-    test("insertCPF Name", async() => {
+    test("insertName User", async() => {
         expect.assertions(2);
 
         const user = new UserBusiness(
@@ -265,7 +265,7 @@ describe("User Tests", () => {
         try{
             await user.insertName({
                 name: 'Artur Magalhães',
-                nextendpoint: 'Fullname',
+                nextendpoint: 'FULLNAME',
                 token: 'token'
             });
     
@@ -274,7 +274,7 @@ describe("User Tests", () => {
         } catch(error) {}
     });
 
-    test("insertCPF Birthday", async() => {
+    test("insertBirthday User", async() => {
         expect.assertions(2);
 
         const user = new UserBusiness(
@@ -287,7 +287,7 @@ describe("User Tests", () => {
         try{
             await user.insertBirthday({
                 birthday: '22-10-1995',
-                nextendpoint: 'Birthday',
+                nextendpoint: 'BIRTHDAY',
                 token: 'token'
             });
     
